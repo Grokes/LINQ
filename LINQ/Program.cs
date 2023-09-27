@@ -3,6 +3,7 @@ List<string> strings = new List<string> { "123", "2D4", "456", "ABC", "ABC", "AB
 
 var task1 = strings.Where(el => el.All(char.IsDigit));
 
+Console.WriteLine("Only numbers");
 foreach(var el in task1)
     Console.Write(el + " ");
 Console.WriteLine();
@@ -14,12 +15,13 @@ var task2 = numbers.Where(el => el > 0);
 Console.WriteLine($"max = {task2.Max()}, min = {task2.Min()}");
 
 //3.Найти наиболее часто встречающееся слово в списке строк.
+Console.WriteLine("most frequent");
 var task3 = strings.GroupBy(el => el).MaxBy(el => el.Count())?.Key;
 Console.WriteLine(task3);
 
 //4. Отсортировать список строк по длине в порядке убывания, а затем по алфавиту для строк одинаковой длины.
 //Подсказка: после сортировки спользовать ThenBy (OrderBy(...).ThenBy(...))
-
+Console.WriteLine("sorted");
 var task4 = strings.OrderByDescending(el => el.Length).ThenBy(el => el);
 foreach (var el in task4)
     Console.WriteLine(el + " ");
@@ -34,7 +36,7 @@ List<DateTime> dates = new List<DateTime> { new DateTime(2022, 1, 1), new DateTi
 int dayDifference = dates.Max().Subtract(dates.Min()).Days;
 Console.WriteLine($"Разница в днях: {dayDifference}");
 
-
+// LINQ 2
 //1.Задача: Найти все пары чисел в списке, сумма которых равна заданному числу.
 //заданное число к примеру 7
 //{1, 2, 3, 4, 5}
@@ -50,7 +52,7 @@ List<string> strings2 = new List<string> {"One two three", "tWo one second", "on
 List<string> task6 = new List<string>();
 
 strings2.ForEach(el => task6.AddRange(el.ToLower().Trim().Split()));
-Console.WriteLine(task6.GroupBy(word => word).Count(word => word.Count() == 1));
+Console.WriteLine("Unique words: " + task6.GroupBy(word => word).Count(word => word.Count() == 1));
 
 
 
@@ -62,8 +64,10 @@ Console.WriteLine(task6.GroupBy(word => word).Count(word => word.Count() == 1));
 //4.Задача: Найти все строки в списке, которые содержат все гласные буквы. Для повторения.
 
 //5. Задача: Получить список уникальных символов из заданной строки. (Без дубликатов, пример рабирали на занятии)
-
-
+Console.WriteLine("uniq char");
+foreach (var el in strings2[0].Distinct())
+    Console.Write(el + " ");
+Console.WriteLine();
 
 
 //6.Задача: Выполнить соединение(Join()) двух коллекций на основе общего свойства и выбрать определенные поля из каждой коллекции.
